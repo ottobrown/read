@@ -1,0 +1,8 @@
+[package]
+name = "read"
+version = "0.1.0"
+edition = "2018"
+keywords = ["cli", "filesystem"]
+readme = "README.md"
+description = "Reads the contents of a file or directory"
+license = "MIT/Apache-2.0"
