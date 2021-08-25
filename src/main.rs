@@ -28,6 +28,12 @@ fn parse_arg(cf: &mut config::Config, arg: String) {
     if &arg == "numbered_lines" || &arg == "nl" {
         cf.numbered_lines = true
     }
+    if &arg.starts_with("max") == &true {
+        let s: &Vec<&str> = &arg.split("max").collect();
+        let num = s[1];
+
+        cf.max_lines = num.parse::<u32>().unwrap()
+    }
 }
 
 fn concat_string(vec: Vec<String>, start_index: usize) -> String {

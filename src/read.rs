@@ -8,7 +8,16 @@ pub fn read(cf: config::Config) -> Result<()> {
 
     let mut line = 0;
 
-    for l in lines {
+    let mut printed = 0; 
+
+    for l in &lines {
+        if printed == cf.max_lines && cf.read_style != config::ReadStyle::LineByLine {
+            println!();
+            println!("Max Lines Exceeded!!");
+            println!("{} more lines left in file", lines.len() - printed as usize);
+            return Ok(())
+        }
+
         if cf.numbered_lines {print!("{}  |  ", line+1); line += 1};
 
         match cf.read_style {
@@ -29,6 +38,7 @@ pub fn read(cf: config::Config) -> Result<()> {
 
         }
 
+        printed += 1
     }
 
     Ok(())
